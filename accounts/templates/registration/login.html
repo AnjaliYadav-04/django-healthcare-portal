@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div id="signup-animation" class="mb-3" style="height:200px;"></div>
+
+      <div class="card animate__animated animate__fadeInDown">
+        <h2 class="text-center mb-4">Create Account</h2>
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            {% for field in form %}
+              <div class="col-md-6 mb-3 animate__animated animate__fadeInUp">
+                <label class="form-label">{{ field.label }}</label>
+                {% render_field field class="form-control" %}
+                {% if field.errors %}
+                  <div class="text-danger small">{{ field.errors|striptags }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-custom">Register</button>
+          </div>
+        </form>
+
+        <p class="text-center mt-3">
+          Already have an account? <a href="{% url 'login' %}">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById('signup-animation'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: "https://assets6.lottiefiles.com/packages/lf20_Stt1R0.json"
+  });
+</script>
+{% endblock %}
