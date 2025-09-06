@@ -187,6 +187,5 @@ To switch to MySQL/PostgreSQL, update settings.py:
 - Bootstrap 5
 - Animate.css
 - Lottie Animations
-
-Medical content references from reputable health organizations
+- Medical content references from reputable health organizations
 
