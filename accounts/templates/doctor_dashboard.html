@@ -4,16 +4,25 @@
 
 {% block content %}
 <div class="container">
-  <div class="card text-center animate__animated animate__zoomIn">
-    <h2>👨‍⚕️ Welcome Dr. {{ user.first_name }} {{ user.last_name }}</h2>
-    <p><b>Email:</b> {{ user.email }}</p>
-    <p><b>Address:</b> {{ user.address_line1 }}, {{ user.city }}, {{ user.state }} - {{ user.pincode }}</p>
-    {% if user.profile_picture %}
-      <img src="{{ user.profile_picture.url }}" width="150" class="profile mt-3 animate__animated animate__pulse animate__infinite">
-    {% endif %}
-    <div class="mt-4">
-      <a href="{% url 'logout' %}" class="btn btn-custom">Logout</a>
+    <div class="card text-center animate__animated animate__zoomIn">
+        <h2>👨‍⚕️ Welcome Dr. {{ user.first_name }} {{ user.last_name }}</h2>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>Address:</b> {{ user.address_line1 }}, {{ user.city }}, {{ user.state }} - {{ user.pincode }}</p>
+
+        {% if user.profile_picture %}
+        <img src="{{ user.profile_picture.url }}" width="150"
+             class="profile mt-3 animate__animated animate__pulse animate__infinite">
+        {% endif %}
+
+        <div class="mt-4">
+            <a href="{% url 'create_blog' %}" class="btn btn-custom me-2">📝 Create Blog Post</a>
+            <a href="{% url 'my_blogs' %}" class="btn btn-outline-primary me-2">📚 My Blogs</a>
+            
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">🚪 Logout</button>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}
